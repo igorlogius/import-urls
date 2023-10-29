@@ -2,10 +2,8 @@ Reads URLs from a text file and opens them as unloaded tabs
 
 <b>Features/Usage</b>
 <ul>
-  <li>click the toolbar button</li>
-  <li>use dialog window to select the file to import from</li>
+  <li>click toolbar button and use dialog window to select the file</li>
 </ul>
-
 
 <b>Notes:</b>
 <ol>

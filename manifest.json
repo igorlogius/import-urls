@@ -13,5 +13,5 @@
   "name": "Open Tabs from file",
   "description": "Reads URLs from a text file and opens them as unloaded tabs",
   "permissions": [],
-  "version": "1.0.1"
+  "version": "1.0.2"
 }
