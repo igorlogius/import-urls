@@ -1,0 +1,17 @@
+{
+  "author": "igorlogius",
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_area": "navbar"
+  },
+  "icons": {
+    "256": "icon.png"
+  },
+  "manifest_version": 2,
+  "name": "Open Tabs from file",
+  "description": "Reads URLs from a text file and opens them as unloaded tabs",
+  "permissions": [],
+  "version": "1.0.1"
+}
