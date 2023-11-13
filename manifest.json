@@ -13,5 +13,8 @@
   "name": "Open Tabs from file",
   "description": "Reads URLs from a text file and opens them as unloaded tabs",
   "permissions": [],
-  "version": "1.0.2"
+  "version": "1.0.3",
+  "options_ui": {
+    "page": "dialog.html"
+  }
 }

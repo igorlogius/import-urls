@@ -6,60 +6,9 @@ const regex = new RegExp(
 );
 const result = document.getElementById("status");
 
-async function importData(data) {
-  let count = 0;
-  const str = data;
-
-  const lines = data.split(/\r?\n|\r|\n/g);
-
-  for (const line of lines) {
-    //console.debug(line);
-
-    /*
-  	const parts = line.split(/https?:\/\//);
-	for(const part of parts){
-		console.log(line);
-		const possible_url = part.split(' ')[0];
-	}
-		*/
-
-    let offset = 0;
-
-    for (const proto of ["https://", "http://"]) {
-      const proto_pos = line.indexOf(proto, offset);
-
-      if (proto_pos === -1) {
-        break;
-      }
-
-      let blank_pos = line.indexOf(" ", proto_pos + 1);
-
-      console.debug(blank_pos);
-
-      if (blank_pos === -1) {
-        blank_pos = line.indexOf("'", proto_pos + 1);
-        console.debug(blank_pos);
-
-        if (blank_pos === -1) {
-          blank_pos = line.indexOf('"', proto_pos + 1);
-          console.debug(blank_pos);
-
-          if (blank_pos === -1) {
-            blank_pos = line.length;
-          }
-        }
-      }
-
-      //const possible_url = line.substr(proto_pos, blank_pos);
-      const possible_url = line.substr(blank_pos);
-
-      console.debug(possible_url);
-      offset = proto_pos + 1;
-    }
-  }
-  return;
-
+async function importData(str) {
   let m;
+  let count = 0;
   while ((m = regex.exec(str)) !== null) {
     // This is necessary to avoid infinite loops with zero-width matches
     if (m.index === regex.lastIndex) {
@@ -92,7 +41,6 @@ async function onLoad() {
 
   // read data from file into current table
   impbtn.addEventListener("input", function (/*evt*/) {
-    //console.log('impbtn');
     const file = this.files[0];
     const reader = new FileReader();
     reader.onload = async function (/*e*/) {
