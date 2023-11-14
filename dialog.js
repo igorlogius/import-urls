@@ -7,6 +7,9 @@ const regex = new RegExp(
 const result = document.getElementById("status");
 
 async function importData(str) {
+  const index_offset = (await browser.tabs.query({ currentWindow: true }))
+    .length;
+
   let m;
   let count = 0;
   while ((m = regex.exec(str)) !== null) {
@@ -26,7 +29,7 @@ async function importData(str) {
           active: false,
           discarded: true,
           url: match,
-          index: 0,
+          index: index_offset + count,
         });
 
         count++;

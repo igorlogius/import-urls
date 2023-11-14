@@ -6,15 +6,15 @@
   "browser_action": {
     "default_area": "navbar"
   },
+  "description": "Reads URLs from a text file and opens them as unloaded tabs",
   "icons": {
     "256": "icon.png"
   },
   "manifest_version": 2,
   "name": "Open Tabs from file",
-  "description": "Reads URLs from a text file and opens them as unloaded tabs",
-  "permissions": [],
-  "version": "1.0.3",
   "options_ui": {
     "page": "dialog.html"
-  }
+  },
+  "permissions": [],
+  "version": "1.0.4"
 }
