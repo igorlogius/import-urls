@@ -1,5 +1,11 @@
 Reads URLs from a text file and opens them as unloaded tabs
 
+
+
+https://github.com/igorlogius/open-tabs-from-file/assets/67047467/03f22538-c34c-4fd0-9ee0-1521c52fd0d6
+
+
+
 <b>Features/Usage</b>
 <ul>
   <li>click toolbar button and use dialog window to select the file</li>
