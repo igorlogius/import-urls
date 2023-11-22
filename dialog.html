@@ -11,18 +11,25 @@
       width: 100%;
       text-align: center;
     }
+    #urlspreview {
+      height: 25em;
+    }
   </style>
 </head>
 <body>
   <fieldset>
-    <label for="impbtn">Select Text File</label>
+    <label for="impbtn">Select text file to load URLs from</label>
     <input id="impbtn" type="file" value="" />
   </fieldset>
   <fieldset>
     <div id="status"></div>
   </fieldset>
-  <span>
-    Tip: You can use a new window to not clutter up your active session</span
-  >
+  <textarea id="urlspreview"></textarea>
+  <fieldset>
+    <button id="urlsopen">Open as Tabs</button>
+  </fieldset>
+  <fieldset>
+    <span> Tip: Use a new window to not clutter your active session</span>
+  </fieldset>
   <script src="dialog.js"></script>
 </body>

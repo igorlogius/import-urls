@@ -5,10 +5,10 @@ const regex = new RegExp(
   "gm"
 );
 const result = document.getElementById("status");
+const urlspreview = document.getElementById("urlspreview");
 
 async function importData(str) {
-  const index_offset = (await browser.tabs.query({ currentWindow: true }))
-    .length;
+  //const index_offset = (await browser.tabs.query({ currentWindow: true })).length;
 
   let m;
   let count = 0;
@@ -25,18 +25,21 @@ async function importData(str) {
       if (groupIndex === 0) {
         // group 0 is the full match
 
+        /*
         browser.tabs.create({
           active: false,
           discarded: true,
           url: match,
           index: index_offset + count,
         });
+        */
+        urlspreview.value += match + "\n";
 
         count++;
       }
     });
   }
-  result.innerText = "Done. Created " + count + " Tabs";
+  result.innerText = "Loaded " + count + " Urls from File, see below";
 }
 
 async function onLoad() {
@@ -60,3 +63,24 @@ async function onLoad() {
 }
 
 document.addEventListener("DOMContentLoaded", onLoad);
+
+urlsopen.addEventListener("click", async () => {
+  console.debug("blub");
+
+  const index_offset = (await browser.tabs.query({ currentWindow: true }))
+    .length;
+
+  let count = 0;
+
+  urlspreview.value.split("\n").forEach((line) => {
+    if (line.startsWith("http")) {
+      browser.tabs.create({
+        active: false,
+        discarded: true,
+        url: line,
+        index: index_offset + count,
+      });
+      count++;
+    }
+  });
+});
