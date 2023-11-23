@@ -4,6 +4,8 @@ const regex = new RegExp(
   /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b[-a-zA-Z0-9()@:%_+.~#?&//=]*/,
   "gm"
 );
+
+const requiredPermission = { permissions: ["clipboardRead"] };
 const result = document.getElementById("status");
 const urlspreview = document.getElementById("urlspreview");
 
@@ -39,7 +41,7 @@ async function importData(str) {
       }
     });
   }
-  result.innerText = "Loaded " + count + " Urls from File, see below";
+  result.innerText = "Found " + count + " URLs";
 }
 
 async function onLoad() {
@@ -59,6 +61,17 @@ async function onLoad() {
       }
     };
     reader.readAsText(file);
+  });
+
+  let impcbbtn = document.getElementById("impcbbtn");
+
+  impcbbtn.addEventListener("click", async () => {
+    if (!(await browser.permissions.request(requiredPermission))) {
+      result.innerText = "Clipboard Read Permission not available";
+      return;
+    }
+    const str = await navigator.clipboard.readText();
+    importData(str);
   });
 }
 

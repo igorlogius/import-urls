@@ -11,10 +11,10 @@
     "256": "icon.png"
   },
   "manifest_version": 2,
-  "name": "Open Tabs from file",
+  "name": "Open Tabs from File or Clipboard",
   "options_ui": {
     "page": "dialog.html"
   },
-  "permissions": [],
-  "version": "1.0.5"
+  "optional_permissions": ["clipboardRead"],
+  "version": "1.0.6"
 }

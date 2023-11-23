@@ -13,20 +13,31 @@
     }
     #urlspreview {
       height: 25em;
+      white-space: pre;
+      overflow-wrap: normal;
+      overflow-x: scroll;
     }
   </style>
 </head>
 <body>
   <fieldset>
-    <label for="impbtn">Select text file to load URLs from</label>
-    <input id="impbtn" type="file" value="" />
+    <legend>Import URLs from ...</legend>
+    <div style="border: 1px solid green; float: left; width: 50%; height: 3em">
+      <label for="impcbbtn"></label><br />
+      <button id="impcbbtn">... the clipboard</button>
+    </div>
+
+    <div style="border: 1px solid green; float: left; width: 50%; height: 3em">
+      <label for="impbtn"> ... a text file</label>
+      <input id="impbtn" type="file" value="" />
+    </div>
   </fieldset>
   <fieldset>
     <div id="status"></div>
   </fieldset>
   <textarea id="urlspreview"></textarea>
   <fieldset>
-    <button id="urlsopen">Open as Tabs</button>
+    <button id="urlsopen">Open URLs as Tabs</button>
   </fieldset>
   <fieldset>
     <span> Tip: Use a new window to not clutter your active session</span>
