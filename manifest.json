@@ -6,15 +6,12 @@
   "browser_action": {
     "default_area": "navbar"
   },
-  "description": "Import URLs from Clipboard or a Text File",
+  "description": "Import URLs from clipboard or a text file as tabs or bookmarks",
   "icons": {
     "256": "icon.png"
   },
   "manifest_version": 2,
   "name": "Import URLs",
-  "options_ui": {
-    "page": "import.html"
-  },
   "optional_permissions": ["bookmarks", "clipboardRead"],
-  "version": "1.0.7"
+  "version": "1.0.8"
 }

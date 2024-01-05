@@ -14,7 +14,6 @@ const result = document.getElementById("status");
 const result2 = document.getElementById("status2");
 const urlspreview = document.getElementById("urlspreview");
 const folders = document.getElementById("folders");
-const bookmarkbtn = document.getElementById("bookmarkbtn");
 
 async function initSelect() {
   folders.disabled = false;
@@ -77,20 +76,13 @@ async function importData(str) {
       }
     });
   }
-  result.innerText = "Found " + count + " URLs";
+  result.innerText = count + " URLs found";
+  result2.innerText = "";
 }
 
 async function onLoad() {
   if (await browser.permissions.contains(requiredPermissionB)) {
     await initSelect();
-
-    folders.addEventListener("input", function (/*evt*/) {
-      if (folders.value !== "") {
-        bookmarkbtn.disabled = false;
-      } else {
-        bookmarkbtn.disabled = true;
-      }
-    });
   }
 
   let impbtn = document.getElementById("impbtn");
@@ -125,17 +117,19 @@ async function onLoad() {
 
 document.addEventListener("DOMContentLoaded", onLoad);
 
-bookmarkbtn.addEventListener("click", async () => {
-
-  urlspreview.value.split("\n").forEach((line) => {
-    if (line.startsWith("http")) {
-      browser.bookmarks.create({
-        parentId: folders.value,
-        url: line,
-      });
-    }
-  });
-  result2.innerText = "URLs bookmarked";
+folders.addEventListener("change", async () => {
+  if (folders.value !== "") {
+    urlspreview.value.split("\n").forEach((line) => {
+      if (line.startsWith("http")) {
+        browser.bookmarks.create({
+          parentId: folders.value,
+          url: line,
+        });
+      }
+    });
+    result2.innerText = "Done";
+    folders.value = "";
+  }
 });
 
 urlsopen.addEventListener("click", async () => {
@@ -155,5 +149,5 @@ urlsopen.addEventListener("click", async () => {
       count++;
     }
   });
-  result2.innerText = "URLs Opened";
+  result2.innerText = "Done";
 });

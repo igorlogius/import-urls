@@ -7,9 +7,6 @@
       background-color: lightgray;
       min-height: 400px;
     }
-    #folders {
-      text-align: center;
-    }
     #urlspreview {
       min-height: 25em;
       white-space: pre;
@@ -22,9 +19,9 @@
 <body>
   <fieldset>
     <legend>Extract URLs from ...</legend>
-    <button id="impcbbtn">the clipboard</button>
+    <button id="impcbbtn">clipboard</button>
     or
-    <label for="impbtn">a text file</label>
+    <label for="impbtn">text file</label>
     <input id="impbtn" type="file" value="" />
   </fieldset>
   URLs Preview (can be edited)
@@ -33,19 +30,15 @@
     <div id="status"></div>
   </fieldset>
   <fieldset>
-    <button id="urlsopen">Open URLs as Tabs</button>
-    or
+    <button id="urlsopen">Open in Tabs</button>
+    or bookmark into
     <select id="folders" disabled>
-      <option value="">Select Bookmark Folder</option>
+      <option value="">Select Folder</option>
     </select>
-    and
-    <button id="bookmarkbtn" disabled>Import as Bookmarks</button>
+    <acronym title="Requires Bookmarks Permission">(?)</acronym>
   </fieldset>
   <fieldset>
     <div id="status2"></div>
-  </fieldset>
-  <fieldset>
-    <span> Tip: Use a new window to not clutter your active session</span>
   </fieldset>
   <script src="import.js"></script>
 </body>
