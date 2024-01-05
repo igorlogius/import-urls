@@ -1,14 +1,22 @@
-Reads URLs from a text file or the clipboard and open them as unloaded tabs
+Import URLs from a text file or the clipboard
+
+<b>Short Demo Video:</b>
 
 https://github.com/igorlogius/open-tabs-from-file/assets/67047467/03f22538-c34c-4fd0-9ee0-1521c52fd0d6
 
-<b>Features/Usage</b>
+<b>Usage</b>
 <ul>
-  <li>click toolbar button and file chooser to select the text file to import urls from</li>
+  <li>
+        click the toolbar button to open the importer UI
+  </li>
 </ul>
 
 <b>Notes:</b>
 <ol>
+    <li><b>Can/Should  i trust this addon?</b>
+        You can view the source code by either visiting the Homepage/Support Site or just saving/downloading the XPI (which is really just a ZIP Archive) and then extract it locally. The Sources in the XPI should be unofuscated and unminified (HTML,CSS and JS), so it's as easy to read as possible. Alternatives you can also use the <a href="https://addons.mozilla.org/en-US/firefox/addon/crxviewer/">CRX Viewer Extension by Rob W</a> to inspect the XPI sources. If you have an questions, you can also open an issue on the support site and i'll try and answer to the best of my abilities.
+        If you are no programmer and are still feeling unsure, you might want to visit one of the official or unoffical mozilla communities and ask if someone there with more knowlege can take a look. Examples: https://reddit.com/r/firefox , https://lemmy.world/c/firefox or https://chat.mozilla.org/#/room/#addons:mozilla.org
+    </li>
     <li><b>Permissions:</b>
         This add-on tries to use the minimal number of required permissions to successfully fullfill its intended purpose.
         If you think this could be improved please let me know by opening an issue and i will try to look into it.

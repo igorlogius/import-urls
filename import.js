@@ -5,9 +5,45 @@ const regex = new RegExp(
   "gm"
 );
 
-const requiredPermission = { permissions: ["clipboardRead"] };
+var requiredPermissionB = {
+  permissions: ["bookmarks"],
+};
+
+const requiredPermissionA = { permissions: ["clipboardRead"] };
 const result = document.getElementById("status");
+const result2 = document.getElementById("status2");
 const urlspreview = document.getElementById("urlspreview");
+const folders = document.getElementById("folders");
+const bookmarkbtn = document.getElementById("bookmarkbtn");
+
+async function initSelect() {
+  folders.disabled = false;
+  const nodes = await browser.bookmarks.getTree();
+  let out = new Map();
+  let depth = 1;
+  for (const node of nodes) {
+    out = new Map([...out, ...recGetFolders(node, depth)]);
+  }
+  for (const [k, v] of out) {
+    //console.debug(k, v.title);
+    folders.add(new Option("-".repeat(v.depth) + " " + v.title, k));
+  }
+}
+
+function recGetFolders(node, depth = 0) {
+  let out = new Map();
+  if (typeof node.url !== "string") {
+    if (node.id !== "root________") {
+      out.set(node.id, { depth: depth, title: node.title });
+    }
+    if (node.children) {
+      for (let child of node.children) {
+        out = new Map([...out, ...recGetFolders(child, depth + 1)]);
+      }
+    }
+  }
+  return out;
+}
 
 async function importData(str) {
   //const index_offset = (await browser.tabs.query({ currentWindow: true })).length;
@@ -45,6 +81,18 @@ async function importData(str) {
 }
 
 async function onLoad() {
+  if (await browser.permissions.contains(requiredPermissionB)) {
+    await initSelect();
+
+    folders.addEventListener("input", function (/*evt*/) {
+      if (folders.value !== "") {
+        bookmarkbtn.disabled = false;
+      } else {
+        bookmarkbtn.disabled = true;
+      }
+    });
+  }
+
   let impbtn = document.getElementById("impbtn");
 
   // read data from file into current table
@@ -66,7 +114,7 @@ async function onLoad() {
   let impcbbtn = document.getElementById("impcbbtn");
 
   impcbbtn.addEventListener("click", async () => {
-    if (!(await browser.permissions.request(requiredPermission))) {
+    if (!(await browser.permissions.request(requiredPermissionA))) {
       result.innerText = "Clipboard Read Permission not available";
       return;
     }
@@ -77,9 +125,20 @@ async function onLoad() {
 
 document.addEventListener("DOMContentLoaded", onLoad);
 
-urlsopen.addEventListener("click", async () => {
-  console.debug("blub");
+bookmarkbtn.addEventListener("click", async () => {
 
+  urlspreview.value.split("\n").forEach((line) => {
+    if (line.startsWith("http")) {
+      browser.bookmarks.create({
+        parentId: folders.value,
+        url: line,
+      });
+    }
+  });
+  result2.innerText = "URLs bookmarked";
+});
+
+urlsopen.addEventListener("click", async () => {
   const index_offset = (await browser.tabs.query({ currentWindow: true }))
     .length;
 
@@ -96,4 +155,5 @@ urlsopen.addEventListener("click", async () => {
       count++;
     }
   });
+  result2.innerText = "URLs Opened";
 });

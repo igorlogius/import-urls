@@ -1,5 +1,8 @@
 /* global browser */
 
 browser.browserAction.onClicked.addListener(() => {
-  browser.runtime.openOptionsPage();
+  browser.tabs.create({
+    url: "import.html",
+    active: true,
+  });
 });

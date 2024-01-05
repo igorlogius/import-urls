@@ -8,39 +8,44 @@
       min-height: 400px;
     }
     #folders {
-      width: 100%;
       text-align: center;
     }
     #urlspreview {
-      height: 25em;
+      min-height: 25em;
       white-space: pre;
       overflow-wrap: normal;
       overflow-x: scroll;
+      width: 99%;
     }
   </style>
 </head>
 <body>
   <fieldset>
-    <legend>Import URLs from ...</legend>
-    <div style="border: 1px solid green; float: left; width: 50%; height: 3em">
-      <label for="impcbbtn"></label><br />
-      <button id="impcbbtn">... the clipboard</button>
-    </div>
-
-    <div style="border: 1px solid green; float: left; width: 50%; height: 3em">
-      <label for="impbtn"> ... a text file</label>
-      <input id="impbtn" type="file" value="" />
-    </div>
+    <legend>Extract URLs from ...</legend>
+    <button id="impcbbtn">the clipboard</button>
+    or
+    <label for="impbtn">a text file</label>
+    <input id="impbtn" type="file" value="" />
   </fieldset>
+  URLs Preview (can be edited)
+  <textarea id="urlspreview"></textarea>
   <fieldset>
     <div id="status"></div>
   </fieldset>
-  <textarea id="urlspreview"></textarea>
   <fieldset>
     <button id="urlsopen">Open URLs as Tabs</button>
+    or
+    <select id="folders" disabled>
+      <option value="">Select Bookmark Folder</option>
+    </select>
+    and
+    <button id="bookmarkbtn" disabled>Import as Bookmarks</button>
+  </fieldset>
+  <fieldset>
+    <div id="status2"></div>
   </fieldset>
   <fieldset>
     <span> Tip: Use a new window to not clutter your active session</span>
   </fieldset>
-  <script src="dialog.js"></script>
+  <script src="import.js"></script>
 </body>

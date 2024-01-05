@@ -6,15 +6,15 @@
   "browser_action": {
     "default_area": "navbar"
   },
-  "description": "Reads URLs from a text file and opens them as unloaded tabs",
+  "description": "Import URLs from Clipboard or a Text File",
   "icons": {
     "256": "icon.png"
   },
   "manifest_version": 2,
-  "name": "Open Tabs from File or Clipboard",
+  "name": "Import URLs",
   "options_ui": {
-    "page": "dialog.html"
+    "page": "import.html"
   },
-  "optional_permissions": ["clipboardRead"],
-  "version": "1.0.6"
+  "optional_permissions": ["bookmarks", "clipboardRead"],
+  "version": "1.0.7"
 }
