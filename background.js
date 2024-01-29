@@ -1,8 +1,11 @@
 /* global browser */
 
-browser.browserAction.onClicked.addListener(() => {
+function openImportTab() {
   browser.tabs.create({
     url: "import.html",
     active: true,
   });
-});
+}
+
+browser.browserAction.onClicked.addListener(openImportTab);
+browser.runtime.onInstalled.addListener(openImportTab);

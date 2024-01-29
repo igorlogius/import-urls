@@ -14,6 +14,15 @@ const result = document.getElementById("status");
 const result2 = document.getElementById("status2");
 const urlspreview = document.getElementById("urlspreview");
 const folders = document.getElementById("folders");
+const reqBMPer = document.getElementById("reqBookmarkPermission");
+
+reqBMPer.addEventListener("click", async () => {
+  if (!(await browser.permissions.request(requiredPermissionB))) {
+    result.innerText = "Bookmark Permission not granted";
+    return;
+  }
+  location.reload();
+});
 
 async function initSelect() {
   folders.disabled = false;
