@@ -8,4 +8,8 @@ function openImportTab() {
 }
 
 browser.browserAction.onClicked.addListener(openImportTab);
-browser.runtime.onInstalled.addListener(openImportTab);
+browser.runtime.onInstalled.addListener((details) => {
+  if (details.reason === "install") {
+    openImportTab();
+  }
+});
