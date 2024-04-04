@@ -33,7 +33,6 @@ async function initSelect() {
     out = new Map([...out, ...recGetFolders(node, depth)]);
   }
   for (const [k, v] of out) {
-    //console.debug(k, v.title);
     folders.add(new Option("-".repeat(v.depth) + " " + v.title, k));
   }
 }
@@ -66,8 +65,6 @@ async function importData(str) {
 
     // The result can be accessed through the `m`-variable.
     m.forEach((match, groupIndex) => {
-      //console.log(`Found match, group ${groupIndex}: ${match}`);
-
       if (groupIndex === 0) {
         // group 0 is the full match
 
