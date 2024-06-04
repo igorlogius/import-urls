@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <head>
   <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
   <title>Open Tabs from File</title>
@@ -18,27 +18,36 @@
 </head>
 <body>
   <fieldset>
-    <legend>Extract URLs from ...</legend>
-    <button id="impcbbtn">clipboard</button>
-    or
-    <label for="impbtn">text file</label>
-    <input id="impbtn" type="file" value="" />
+    <legend>Get URLs from ...</legend>
+    <div>
+      <button id="impcbbtn">clipboard</button>
+      or
+      <span>
+        text file
+        <input id="impbtn" type="file" value="" />
+      </span>
+    </div>
   </fieldset>
-  URLs Preview (can be edited)
+  URL Preview
   <textarea id="urlspreview"></textarea>
   <fieldset>
     <div id="status"></div>
   </fieldset>
   <fieldset>
-    <button id="urlsopen">Open in Tabs</button>
-    or bookmark into
-    <select id="folders" disabled>
-      <option value="">Select Folder</option>
-    </select>
-    <acronym id="reqBookmarkPermission" title="Request Bookmarks Permission"
-      >(?)</acronym
-    >
+    <button id="urlsopen">Open in tabs</button>
+    load tabs?
+    <input type="checkbox" id="openLoad" />
+    with seconds delay? <input type="number" id="openDelay" min="0" value="0" />
   </fieldset>
+
+  <fieldset>
+    <select id="folders" disabled>
+      <option value="">Create bookmarks in folder</option>
+    </select>
+
+    <acronym id="reqBookmarkPermission" title="Request Permission">(?)</acronym>
+  </fieldset>
+
   <fieldset>
     <div id="status2"></div>
   </fieldset>

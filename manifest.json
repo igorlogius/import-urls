@@ -1,6 +1,6 @@
 {
   "author": "igorlogius",
-  "homepage_url": "https://github.com/igorlogius",
+  "homepage_url": "https://github.com/igorlogius/import-urls",
   "background": {
     "scripts": ["background.js"]
   },
@@ -14,5 +14,5 @@
   "manifest_version": 2,
   "name": "Import URLs",
   "optional_permissions": ["bookmarks", "clipboardRead"],
-  "version": "1.0.11"
+  "version": "1.0.12"
 }

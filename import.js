@@ -1,8 +1,10 @@
 /* global browser */
 
+sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
 const regex = new RegExp(
   /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b[-a-zA-Z0-9()@:%_+.~#?&//=]*/,
-  "gm"
+  "gm",
 );
 
 var requiredPermissionB = {
@@ -144,16 +146,22 @@ urlsopen.addEventListener("click", async () => {
 
   let count = 0;
 
-  urlspreview.value.split("\n").forEach((line) => {
+  const discarded = !document.getElementById("openLoad").checked;
+  const delay = document.getElementById("openDelay").value;
+
+  for (const line of urlspreview.value.split("\n")) {
     if (line.startsWith("http")) {
-      browser.tabs.create({
+      await browser.tabs.create({
         active: false,
-        discarded: true,
+        discarded,
         url: line,
         index: index_offset + count,
       });
       count++;
+      if (!discarded) {
+        await sleep(delay * 1000);
+      }
     }
-  });
+  }
   result2.innerText = "Done";
 });
