@@ -3,7 +3,7 @@
 sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const regex = new RegExp(
-  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b[-a-zA-Z0-9()@:%_+.~#?&//=]*/,
+  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z][a-zA-Z0-9]{0,5}\b[-a-zA-Z0-9@:%_+.~#?&//=]*/,
   "gm",
 );
 
