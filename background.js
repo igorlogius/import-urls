@@ -20,10 +20,12 @@ function openImportTab() {
 
 browser.browserAction.onClicked.addListener(openImportTab);
 browser.runtime.onInstalled.addListener(async (details) => {
+  const extractregex =
+    "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\.[a-zA-Z][a-zA-Z0-9]{0,5}\\b[-a-zA-Z0-9@:%_+\\.~#?&//=]*";
   if (details.reason === "install") {
-    const extractregex =
-      "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\.[a-zA-Z][a-zA-Z0-9]{0,5}\\b[-a-zA-Z0-9@:%_+\\.~#?&//=]*";
     await setToStorage("extractregex", extractregex);
     openImportTab();
+  } else if (details.reason === "update") {
+    await setToStorage("extractregex", extractregex);
   }
 });

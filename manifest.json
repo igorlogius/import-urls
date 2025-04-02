@@ -15,5 +15,5 @@
   "name": "Import URLs",
   "permissions": ["storage"],
   "optional_permissions": ["bookmarks", "clipboardRead"],
-  "version": "1.0.14"
+  "version": "1.0.15"
 }
