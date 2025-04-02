@@ -2,11 +2,6 @@
 
 sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-const regex = new RegExp(
-  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z][a-zA-Z0-9]{0,5}\b[-a-zA-Z0-9@:%_+.~#?&//=]*/,
-  "gm",
-);
-
 var requiredPermissionB = {
   permissions: ["bookmarks"],
 };
@@ -17,6 +12,7 @@ const result2 = document.getElementById("status2");
 const urlspreview = document.getElementById("urlspreview");
 const folders = document.getElementById("folders");
 const reqBMPer = document.getElementById("reqBookmarkPermission");
+const extREinput = document.getElementById("extractregex");
 
 reqBMPer.addEventListener("click", async () => {
   if (!(await browser.permissions.request(requiredPermissionB))) {
@@ -59,6 +55,11 @@ async function importData(str) {
 
   let m;
   let count = 0;
+
+  const regex = new RegExp(extREinput.value, "gm");
+
+  console.debug(regex);
+
   while ((m = regex.exec(str)) !== null) {
     // This is necessary to avoid infinite loops with zero-width matches
     if (m.index === regex.lastIndex) {
@@ -88,10 +89,47 @@ async function importData(str) {
   result2.innerText = "";
 }
 
+function onChange(evt) {
+  const id = evt.target.id;
+  let el = document.getElementById(id);
+
+  let value = el.type === "checkbox" ? el.checked : el.value;
+  let obj = {};
+  if (typeof value === "string") {
+    value = value.trim(); // strip whitespace
+  }
+  obj[id] = value;
+
+  browser.storage.local.set(obj);
+}
+
 async function onLoad() {
   if (await browser.permissions.contains(requiredPermissionB)) {
     await initSelect();
   }
+
+  ["extractregex"].map((id) => {
+    browser.storage.local
+      .get(id)
+      .then((obj) => {
+        let el = document.getElementById(id);
+        let val = obj[id];
+
+        console.debug(id, val);
+
+        if (typeof val !== "undefined") {
+          if (el.type === "checkbox") {
+            el.checked = val;
+          } else {
+            el.value = val;
+          }
+        }
+      })
+      .catch(console.error);
+
+    let el = document.getElementById(id);
+    el.addEventListener("input", onChange);
+  });
 
   let impbtn = document.getElementById("impbtn");
 
